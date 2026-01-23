@@ -1,0 +1,103 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch API Server",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/cmd/api",
+            "console": "integratedTerminal",
+            "env": {
+                "PORT": "8080",
+                "LOG_LEVEL": "debug",
+                "LOG_FORMAT": "json",
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USER": "postgres",
+                "DB_PASSWORD": "yourpassword",
+                "DB_NAME": "accounting",
+                "DB_MAX_OPEN_CONNS": "25",
+                "DB_MAX_IDLE_CONNS": "5",
+                "DB_CONN_MAX_LIFETIME_MINUTES": "5"
+            },
+            "showLog": false,
+            "trace": "verbose"
+        },
+        {
+            "name": "Launch API Server (from .env)",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/cmd/api",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "showLog": false,
+            "trace": "verbose"
+        },
+        {
+            "name": "Launch API Server (Production Mode)",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/cmd/api",
+            "console": "integratedTerminal",
+            "env": {
+                "PORT": "8080",
+                "LOG_LEVEL": "info",
+                "LOG_FORMAT": "json",
+                "DB_HOST": "localhost",
+                "DB_PORT": "5432",
+                "DB_USER": "postgres",
+                "DB_PASSWORD": "yourpassword",
+                "DB_NAME": "accounting",
+                "DB_MAX_OPEN_CONNS": "25",
+                "DB_MAX_IDLE_CONNS": "5",
+                "DB_CONN_MAX_LIFETIME_MINUTES": "5"
+            },
+            "showLog": false
+        },
+        {
+            "name": "Debug Current Test",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "program": "${fileDirname}",
+            "console": "integratedTerminal",
+            "showLog": false
+        },
+        {
+            "name": "Debug Test Function",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "program": "${workspaceFolder}",
+            "args": [
+                "-test.run",
+                "^${input:testName}$"
+            ],
+            "console": "integratedTerminal",
+            "showLog": false
+        },
+        {
+            "name": "Debug All Tests in Package",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "program": "${workspaceFolder}/...",
+            "console": "integratedTerminal",
+            "env": {
+                "LOG_LEVEL": "debug"
+            },
+            "showLog": false
+        }
+    ],
+    "inputs": [
+        {
+            "id": "testName",
+            "type": "promptString",
+            "description": "Enter the test function name (e.g., TestCreateUser)",
+            "default": "Test"
+        }
+    ]
+}
