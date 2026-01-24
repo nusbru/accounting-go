@@ -9,6 +9,8 @@ import (
 	"time"
 
 	"accounting/internal/pkg/logger"
+
+	_ "github.com/lib/pq"
 )
 
 // Config holds database configuration
