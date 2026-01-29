@@ -86,7 +86,7 @@ func (l *Logger) WithContext(ctx context.Context) *Logger {
 	// Uses the middleware.ContextKey type for type-safe context keys
 	type contextKey string
 	const requestIDKey contextKey = "request-id"
-	
+
 	reqID := ctx.Value(requestIDKey)
 	if reqID != nil {
 		return &Logger{Logger: l.Logger.With("request_id", fmt.Sprintf("%v", reqID))}

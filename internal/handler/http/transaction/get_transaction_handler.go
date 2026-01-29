@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
-	"accounting/internal/domain/interfaces"
 	domainerrors "accounting/internal/domain/errors"
+	"accounting/internal/domain/interfaces"
 	"accounting/internal/handler/http/common"
 )
 

@@ -80,7 +80,7 @@ func TestValidateLength(t *testing.T) {
 		wantErr bool
 	}{
 		{"abc", 1, 5, false},
-		{"ab", 3, 5, true},  // too short
+		{"ab", 3, 5, true},     // too short
 		{"abcdef", 1, 5, true}, // too long
 		{"", 0, 5, false},
 		{"exact", 5, 5, false},
