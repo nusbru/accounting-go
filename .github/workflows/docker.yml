@@ -1,11 +1,9 @@
 name: Docker Build & Push
 
 on:
-  push:
-    branches: [main]
-    tags:
-      - "v*"
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["CodeQL Analysis"]
+    types: [completed]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,6 +19,7 @@ env:
 
 jobs:
   build-and-push:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
 
@@ -80,6 +79,7 @@ jobs:
           retention-days: 30
 
   scan-dockerfile:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Scan Dockerfile
     runs-on: ubuntu-latest
 

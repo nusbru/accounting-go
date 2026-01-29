@@ -1,12 +1,9 @@
 name: CodeQL Analysis
 
 on:
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
-  schedule:
-    - cron: "30 1 * * 1"
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -15,6 +12,7 @@ permissions:
 
 jobs:
   analyze:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Analyze
     runs-on: ubuntu-latest
 
